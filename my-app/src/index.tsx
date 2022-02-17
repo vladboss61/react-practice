@@ -8,13 +8,20 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { Provider } from 'react-redux';
 import store from './store';
+import { BrowserRouter } from 'react-router-dom';
+import { Timer } from './store/timer.store';
+
+
+export const timer = new Timer();
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <AppComponent/>
-    </Provider>,
-  </React.StrictMode>,
+    <React.StrictMode>
+      <Provider store={store}>
+          <BrowserRouter>
+            <AppComponent/>
+          </BrowserRouter>
+      </Provider>
+    </React.StrictMode>,
   document.getElementById('root')
 );
 

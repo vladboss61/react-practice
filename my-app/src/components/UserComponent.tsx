@@ -1,6 +1,5 @@
 import { User } from '../models/User.model';
 import { useContext, useEffect } from 'react';
-import { ValueContent } from '../AppComponent';
 
 type UserProps = {
   user: User| null 
@@ -8,9 +7,6 @@ type UserProps = {
 
 const UserComponent: React.FC<UserProps> = (props: UserProps) => {
 
-    const valueData = useContext(ValueContent);
-    console.log("valueData");
-    console.log(valueData);
 
     useEffect(() =>  {
       // DidMount
