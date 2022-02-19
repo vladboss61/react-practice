@@ -16,13 +16,20 @@ import { debug } from 'console';
 import { makeAutoObservable } from 'mobx';
 import { observer } from "mobx-react"
 
-import { timer } from './index';
+import { difficultTimer } from './index';
+import { Data } from './models/Data.model';
 
 const loadUser = async <T, >(url: string): Promise<T> => {
   const response: Response = await fetch(url);
   const user: any = await response.json();
 
   return user as T;
+}
+
+function getRandomInt(min: number, max: number): number {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 const AppComponent = observer(() => {
@@ -71,8 +78,27 @@ const AppComponent = observer(() => {
   }
 
   const handleMobx = () => {
-    timer.increase();
+    difficultTimer.increase();
   }
+
+  const handleAddData = () => {
+    const data = new Data();
+    data.email = "vlad.vlad@google.com";
+    data.id = getRandomInt(0, 10000000);
+    data.first_name = "Vlad";
+    data.avatar = "adkasd;kl";
+    data.last_name = "VVVV"
+
+    difficultTimer.addData(data);
+  }
+
+  const handleAdd = (data: Data) => {
+    difficultTimer.addToBasket(data);
+  }
+
+  const handleRemove = (data: Data) => {
+    difficultTimer.removeFromBasket(data.id);
+  } 
 
   const handlerNavigate = () => {
     localStorage.setItem("key_basket", JSON.stringify([1, 2, 3]));
@@ -96,15 +122,27 @@ const AppComponent = observer(() => {
   return (
       <>
         <div className="App">
+          Basket Count: {difficultTimer.basket.length}
           {resultUserComponent}
-          {users.map(user => <UserComponent user={user}></UserComponent>)}
+          {users.map(user => <UserComponent user={user}>
+            <div>- test -</div>
+          </UserComponent>)}
           <Button className='my-btn' onClick={() => handlerButton()}> Click </Button>
           <Button className='my-btn' onClick={() => handleFlag()}> Flag </Button>
           <Button className='my-btn' onClick={() => handlerNavigate()}> Navigate </Button>
           <Button className='my-btn' onClick={() => handleMobx()}> Mobx </Button>
+          <Button className='my-btn' onClick={() => handleAddData()}> Add Data </Button>
         </div>
 
-        {timer.secondsPassed}
+        {difficultTimer.secondsPassed}
+
+        {difficultTimer.dataArray.map(x => 
+          (<>
+            <div className='css-data'>{x.id} {x.email}</div>
+            <Button className='my-btn' onClick={() => handleAdd(x)}> Add to Basket Current Data Info </Button>
+            <Button className='my-btn' onClick={() => handleRemove(x)}> Remove This Data </Button>
+          </>))}
+
         <Routes>
           <Route path="/" element={<HomeComponent />} />
           <Route path="*" element={<Navigate replace to={'/'} />} />

@@ -12,6 +12,9 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+.css-data {
+  background-color: aquamarine;
+}
 
 .my-btn {
   background-color: #61dafb !important;

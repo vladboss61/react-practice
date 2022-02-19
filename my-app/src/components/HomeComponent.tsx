@@ -1,11 +1,11 @@
 import { Button } from "react-bootstrap";
-import { timer } from '../index';
+import { difficultTimer } from '../index';
 
 const HomeComponent = () => {
     console.log("timer.secondsPassed");
-    console.log(timer.secondsPassed);
+    console.log(difficultTimer.secondsPassed);
     const handleHomeMobx = () => {
-        timer.reset();
+        difficultTimer.reset();
     }
     return (<>
         <Button className='my-btn' onClick={() => handleHomeMobx()}> Mobx Home btn </Button>

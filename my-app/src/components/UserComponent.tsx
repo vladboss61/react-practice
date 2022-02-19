@@ -1,11 +1,12 @@
 import { User } from '../models/User.model';
-import { useContext, useEffect } from 'react';
+import { PropsWithChildren, useContext, useEffect } from 'react';
+import { difficultTimer } from '../index';
 
 type UserProps = {
   user: User| null 
 };
 
-const UserComponent: React.FC<UserProps> = (props: UserProps) => {
+const UserComponent: React.FC<UserProps> = (props: PropsWithChildren<UserProps>) => {
 
 
     useEffect(() =>  {
@@ -22,7 +23,9 @@ const UserComponent: React.FC<UserProps> = (props: UserProps) => {
 
     return (
         <div className="user-info">
+          -Additional- {props.children} -Additional- 
           {result}
+          {difficultTimer.secondsPassed}
         </div>
     );
   }

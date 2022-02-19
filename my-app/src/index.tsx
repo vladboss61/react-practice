@@ -9,10 +9,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from 'react-redux';
 import store from './store';
 import { BrowserRouter } from 'react-router-dom';
-import { Timer } from './store/timer.store';
+import { DifficultTimer } from './store/timer.store';
 
 
-export const timer = new Timer();
+export const difficultTimer = new DifficultTimer();
 
 ReactDOM.render(
     <React.StrictMode>
