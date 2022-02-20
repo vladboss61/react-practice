@@ -26,6 +26,24 @@ const loadUser = async <T, >(url: string): Promise<T> => {
   return user as T;
 }
 
+const sendPostRequest = async () => {
+
+  const result = await fetch('https://reqres.in/api/users', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name: "morpheus 123",
+      job: "leader 123"
+    })
+  });
+  
+  console.log("Result body");
+  console.log(await result.json());
+}
+
+
 function getRandomInt(min: number, max: number): number {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -50,6 +68,7 @@ const AppComponent = observer(() => {
     // DidMount
      const initialize = async () => {
      const loadedUser1 = await loadUser<User>("https://reqres.in/api/users/2");
+     await sendPostRequest();
      setUser1(loadedUser1);
     }
     initialize();
@@ -105,7 +124,6 @@ const AppComponent = observer(() => {
     const str_basket = localStorage.getItem("key_basket");
     if (str_basket != null) {
       const array = JSON.parse(str_basket) as number[];
-      debugger;
     }
     console.log();
     if (isAbout) {
@@ -146,9 +164,7 @@ const AppComponent = observer(() => {
         <Routes>
           <Route path="/" element={<HomeComponent />} />
           <Route path="*" element={<Navigate replace to={'/'} />} />
-          <Route path="about" element={<AboutComponent />}>
-            <Route path="me" element={<MeComponent />} />
-          </Route>
+          <Route path="about/*" element={<AboutComponent />}/>
         </Routes>
       </>
   );

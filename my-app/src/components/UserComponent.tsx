@@ -1,14 +1,14 @@
 import { User } from '../models/User.model';
 import { PropsWithChildren, useContext, useEffect } from 'react';
 import { difficultTimer } from '../index';
+import { Route, Routes } from 'react-router-dom';
+import MeComponent from './MeComponent';
 
 type UserProps = {
   user: User| null 
 };
 
-const UserComponent: React.FC<UserProps> = (props: PropsWithChildren<UserProps>) => {
-
-
+const UserComponent: React.FC<UserProps> = (props: UserProps) => {
     useEffect(() =>  {
       // DidMount
       console.log("User component is ready");
@@ -23,7 +23,6 @@ const UserComponent: React.FC<UserProps> = (props: PropsWithChildren<UserProps>)
 
     return (
         <div className="user-info">
-          -Additional- {props.children} -Additional- 
           {result}
           {difficultTimer.secondsPassed}
         </div>

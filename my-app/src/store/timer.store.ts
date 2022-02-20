@@ -6,20 +6,20 @@ export class DifficultTimer {
     secondsPassed = 0;
 
 
-    dataArray: Data[] = [{
-        id: 1,
-        avatar: "stub",
-        first_name: "First Product Name (Pepsi)",
-        last_name: "Last Product Name",
-        email: 'pepsi@google.com'
-    },
-    {
-        id: 2,
-        avatar: "stub",
-        first_name: "First Product Name 2 (Cola)",
-        last_name: "Last Product Name 2",
-        email: 'colacola@google.com'
-    }];
+        dataArray: Data[] = [{
+            id: 1,
+            avatar: "stub",
+            first_name: "First Product Name (Pepsi)",
+            last_name: "Last Product Name",
+            email: 'pepsi@google.com'
+        },
+        {
+            id: 2,
+            avatar: "stub",
+            first_name: "First Product Name 2 (Cola)",
+            last_name: "Last Product Name 2",
+            email: 'colacola@google.com'
+        }];
 
     basket: Data[] = []
   
